@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  moonphases-api:
+    build: .
+    container_name: moonphases-api
+    ports:
+      - "5050:5050"
+    environment:
+      - FLASK_APP=app/main.py
+    restart: unless-stopped

@@ -19,7 +19,7 @@ A simple Flask-based API that provides moon phase information for a given date.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/aurigae_moonphases.git
+git clone https://github.com/corradoignoti/aurigae_moonphases.git
 cd aurigae_moonphases
 ```
 

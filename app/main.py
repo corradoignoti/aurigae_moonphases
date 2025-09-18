@@ -10,23 +10,23 @@ def classify_phase(illumination):
     based on illumination percentage (0–100).
     """
     if illumination == 0:
-        return {"phase": "New Moon", "icon": "🌑"}
+        return {"phase": "New Moon", "icon": "🌑", "phase_id": "0"}
     elif 0 < illumination < 25:
-        return {"phase": "Waxing Crescent", "icon": "🌒"}
+        return {"phase": "Waxing Crescent", "icon": "🌒", "phase_id": "1"}
     elif illumination == 25:
-        return {"phase": "First Quarter", "icon": "🌓"}
+        return {"phase": "First Quarter", "icon": "🌓", "phase_id": "2"}
     elif 25 < illumination < 50:
-        return {"phase": "Waxing Gibbous", "icon": "🌔"}
+        return {"phase": "Waxing Gibbous", "icon": "🌔", "phase_id": "3"}
     elif illumination == 50:
-        return {"phase": "Full Moon",  "icon": "🌕"}
+        return {"phase": "Full Moon",  "icon": "🌕", "phase_id": "4"}
     elif 50 < illumination < 75:
-        return {"phase": "Waning Gibbous", "icon": "🌖"}
+        return {"phase": "Waning Gibbous", "icon": "🌖", "phase_id": "5"}
     elif illumination == 75:
-        return {"phase": "Last Quarter", "icon": "🌗"}
+        return {"phase": "Last Quarter", "icon": "🌗", "phase_id": "6"}
     elif 75 < illumination < 100:
-        return {"phase": "Waning Crescent", "icon": "🌘"}
+        return {"phase": "Waning Crescent", "icon": "🌘", "phase_id": "7"}
     else:
-        return {"phase": "New Moon", "icon": "🌑"}
+        return {"phase": "New Moon", "icon": "🌑", "phase_id": "0"}
 
 @app.route("/api/moonphase", methods=["GET"])
 def moonphase():
@@ -59,11 +59,12 @@ def moonphase():
         "illumination_percent": round(phase_percentage, 2),
         "phase": phase_name["phase"],
         "phase_icon": phase_name["icon"],
+        "phase_id": phase_name["phase_id"],
         "next_phases": {
-            "new_moon": str(next_new.datetime().date()),
-            "first_quarter": str(next_first_quarter.datetime().date()),
-            "full_moon": str(next_full.datetime().date()),
-            "last_quarter": str(next_last_quarter.datetime().date())
+            "new_moon": {"date": str(next_new.datetime().date()), "phase_id": "0"},
+            "first_quarter": {"date":str(next_first_quarter.datetime().date()), "phase_id": "2"},
+            "full_moon": {"date": str(next_full.datetime().date()), "phase_id": "4"},
+            "last_quarter": {"date":str(next_last_quarter.datetime().date()), "phase_id": "6"}
         }
     })
 
